@@ -1,29 +1,37 @@
 <style type="text/css">
-	table,th,tr,td
-	{
+	table,
+	th,
+	tr,
+	td {
 		text-align: center;
 	}
 </style>
 
-<!-- quick email widget -->
-<div class="box box-info">
-<div class="box-header">
-  <h3 class="box-title"> Tambah Data Kategori</h3>
-
-<div class="pull-right">
-	<?php
-		echo form_open ('kategori/post');
-	?>
-</div>
-<table class="table table-bordered table-hover">
-
-	<tr><td>Nama Kategori</td>
-		<td><input type="text" name="kategori" class="form-control" placeholder="kategori"></td>
-	</tr>
-	<tr>
-		<td colspan="2"> <button type="submit"  class="btn btn-info" name="submit"> simpan </button></td>
-	</tr>
-
-</table>
-</form>
-</div></div>
+<section class="content">
+	<div class="row">
+		<div class='col-xs-12'>
+			<div class="box box-info">
+				<div class="box-header with-border">
+					<h3 class="box-title"> Tambah Data Kategori</h3>
+				</div>
+				<div class="box-body">
+					<?php
+					echo form_open('kategori/post', array('role' => "form", 'id' => "myForm", 'data-toggle' => "validator"));
+					?>
+					<div class="form-group">
+						<label for="kategori" class="control-label">Nama Kategori</label>
+						<div class="input-group">
+							<input type="text" class="form-control" name="kategori" id="kategori" data-error="Nama Kategori harus diisi" placeholder="Nama Kategori" value="" required />
+							<span class="input-group-addon">
+								<span class="fa fa-cube"></span>
+							</span>
+						</div>
+						<div class="help-block with-errors"></div>
+					</div>
+					<button type="submit" class="btn btn-info" name="submit"> simpan </button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -4,7 +4,7 @@ class Model_kategori extends CI_Model {
 	function tampilkan_data() {
 
 		return 
-		$this->db->get('kategori'); 
+		$this->db->get('kategori')->result(); 
 	}
 		function post()
 		{
@@ -12,7 +12,7 @@ class Model_kategori extends CI_Model {
 			(
 				'nama_kategori'=> $this->input->post('kategori')
 			);
-			$this->db->insert('kategori_barang', $data);
+			$this->db->insert('kategori', $data);
 		}
 
 		function edit()
