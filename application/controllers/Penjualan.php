@@ -131,7 +131,7 @@ class Penjualan extends CI_Controller
         $barang = $this->Model_penjualan->lihat_barang($this->input->post('idbarang'));
         $permintaan = intval($this->input->post('qty'));
         $jumlahstok = intval($barang->row()->jumlah);
-        if ($permintaan >= $jumlahstok) {
+        if ($permintaan > $jumlahstok) {
             $this->session->set_flashdata('message', 'Jumlah permintaan melebihi stok barang');
             redirect(base_url('index.php/penjualan'));
         } else {

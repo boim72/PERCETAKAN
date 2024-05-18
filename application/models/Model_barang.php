@@ -28,11 +28,12 @@ class Model_barang extends CI_Model
 	function tampil_data_offline()
 	{
         return $this->db
-        ->select('barang.id_barang, barang.nama_barang, kategori.nama_kategori, ukuran.nama_ukuran, barang.harga, barang.jumlah_barang, barang.foto, barang.catatan, barang.progres')
+        ->select('barang.id_barang, barang.nama_barang, kategori.nama_kategori, ukuran.nama_ukuran, barang.harga, barang.jumlah_barang, barang.foto, barang.catatan, barang.progres, barang.tanggal_barang, stok.stok_barang, stok.tanggal_stok')
         ->from('barang')
         ->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left')
         ->join('ukuran', 'ukuran.id_ukuran = barang.ukuran', 'left')
         ->join('operator', 'operator.id_operator = barang.id_operator', 'left')
+		->join('stok', 'stok.id_barang = barang.id_barang', 'left')
         ->where('operator.id_akses', 1)
         ->distinct()
         ->get();
@@ -46,8 +47,10 @@ class Model_barang extends CI_Model
 	function tampil_dropdown()
 	{
 		return
-			$this->db->select('id_barang, nama_barang')
+			$this->db->select('barang.id_barang, barang.nama_barang, barang.jumlah_barang', 'left')
 			->from('barang')
+			->join('operator', 'operator.id_operator = barang.id_operator')
+			->where('operator.id_akses', 1)
 			->get();
 	}
 
@@ -111,6 +114,20 @@ class Model_barang extends CI_Model
 		$query = $this->db->get('detail_penjualan');
 		$row = $query->row_array();
 		return $row['id'];
+	}
+	function get_last_idbarang()
+	{
+		$this->db->select_max('id_barang');
+		$query = $this->db->get('barang');
+		$row = $query->row_array();
+		return $row['id_barang'];
+	}
+	function get_last_idout()
+	{
+		$this->db->select_max('id_outbarang');
+		$query = $this->db->get('outbarang');
+		$row = $query->row_array();
+		return $row['id_outbarang'];
 	}
 
 }

@@ -117,9 +117,10 @@
 								<select name="progres" class="form-control" <?= ($akses_user == 1) ? '' : 'readonly'; ?>>
 								<?php if ($akses_user == 1 ) { ?>
 									<option value='Verivikasi'>Verivikasi</option>
-									<option value="Pembayaran">Pembayaran</option>
 									<option value='Gagal'>Gagal</option>
+									<option value="Pembayaran">Pembayaran</option>
 									<option value="Berhasil">Berhasil</option>
+									<option value="Produksi">Produksi</option>
 								<?php	} else { ?>
 									<option value="Verivikasi"><?= $record['progres']; ?></option>
 									<?php } ?>

@@ -48,7 +48,7 @@
 								<th>Kategori barang</th>
 								<th>Harga Barang</th>
 								<th>Stok Barang</th>
-								<th>Kapasitas</th>
+								<th>Foto</th>
 								<th>Tanggal</th>
 								<th>Aksi</th>
 							</tr>
@@ -66,7 +66,9 @@
 									<?php echo $s->stok_barang; ?>
 								</td>
 								<td>
-									<?php echo $s->stok_barang; ?>
+									<a href="<?php echo (site_url('uploads/' . $s->foto)); ?>" class="image-link">
+											<img src="<?php echo (site_url('uploads/' . $s->foto)); ?>" alt="" style="width:30px;height:30px">
+									</a>
 								</td>
 								<td><?php echo $s->tanggal_stok; ?></td>
 								<td><?php
@@ -85,7 +87,7 @@
 	</div>
 </section>
 <script src="<?php echo base_url() ?>assets/app/js/alert.js"></script>
-<script>
+<!-- <script>
 	$(document).ready(function() {
 		$('#myTable').DataTable({
 			dom: 'Blfrtip',
@@ -140,4 +142,4 @@
 			],
 		});
 	});
-</script>
+</script> -->

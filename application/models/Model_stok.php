@@ -4,10 +4,25 @@ class Model_stok extends CI_Model{
 
 	function tampil_data()
 	{
-		return 
-		$this->db->join('barang','barang.id_barang = stok.id_barang','left')
-		->join('kategori','kategori.id_kategori = barang.id_kategori','left')
-		->get('stok')->result();
+		return $this->db
+        ->join('barang', 'barang.id_barang = stok.id_barang', 'left')
+        ->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left')
+        ->where('stok.stok_barang !=', 0)
+        ->get('stok')
+        ->result();
+	}
+	function tampil_data_offline()
+	{
+        return $this->db
+        ->select('barang.id_barang, barang.nama_barang, kategori.nama_kategori, ukuran.nama_ukuran, barang.harga, barang.jumlah_barang, barang.foto, barang.catatan, barang.progres, barang.tanggal_barang, stok.stok_barang, stok.tanggal_stok')
+        ->from('barang')
+        ->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left')
+        ->join('ukuran', 'ukuran.id_ukuran = barang.ukuran', 'left')
+        ->join('operator', 'operator.id_operator = barang.id_operator', 'left')
+		->join('stok', 'stok.id_barang = barang.id_barang', 'left')
+        ->where('operator.id_akses', 1)
+        ->distinct()
+        ->get();
 	}
 
 	function tampil_data2(){

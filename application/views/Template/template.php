@@ -123,7 +123,7 @@
 							</a>
 							<ul class="treeview-menu">
 								<li class="active"><a href="<?php echo base_url() ?>index.php/kategori"><i class="fa fa-circle-o"></i>KATEGORI PEMESANAN</a></li>
-								<li><a href="<?php echo base_url() ?>index.php/barang"><i class="fa fa-circle-o"></i>PEMESANAN ONLINE</a></li>
+								<li><a href="<?php echo base_url() ?>barang/index"><i class="fa fa-circle-o"></i>PEMESANAN ONLINE</a></li>
 							     <li><a href="<?php echo base_url() ?>index.php/BarangOffline"><i class="fa fa-circle-o"></i>PEMESANAN OFFLINE</a></li>
 							</ul>
 						</li>
@@ -146,15 +146,18 @@
 								<li><a href="<?php echo base_url() ?>index.php/outbahan"><i class="fa fa-arrow-circle-left "></i>Bahan Keluar</a></li>
 							</ul>
 						</li>
-						<li>
-							<a href="<?php echo base_url() ?>index.php/Stok">
-								<i class="fa fa-cubes"></i> <span>STOK</span>
+						<li class="active treeview">
+							<a href="#">
+								<i class="fa fa-cubes"></i> <span>STOK Barang</span>
 								<span class="pull-right-container">
+									<i class="fa fa-angle-left pull-right-container"></i>
 								</span>
 							</a>
+							<ul class="treeview-menu">
+								<li><a href="<?php echo base_url() ?>index.php/stok"><i class="fa fa-circle-o"></i>Stok Barang Jadi</a></li>
+							</ul>
 						</li>
 						<li class="active treeview">
-
 							<a href="#">
 								<i class="fa fa-cubes"></i> <span>STOK Bahan</span>
 								<span class="pull-right-container">
@@ -163,7 +166,7 @@
 							</a>
 							<ul class="treeview-menu">
 								<li class="active"><a href="<?= base_url(); ?>index.php/bahan"><i class="fa fa-circle-o"></i>Stok Bahan</a></li>
-								<li><a href="<?php echo base_url() ?>index.php/stok"><i class="fa fa-circle-o"></i>Stok Barang</a></li>
+								<!-- <li><a href="<php echo base_url() ?>index.php/stok"><i class="fa fa-circle-o"></i>Stok Barang</a></li> -->
 							</ul>
 						</li>
 						<li>
@@ -215,24 +218,24 @@
 								</span>
 							</a>
 							<ul class="treeview-menu">
-								<li class="active"><a href="<?php echo base_url() ?>index.php/kategori"><i class="fa fa-circle-o"></i>KATEGORI PEMESANAN</a></li>
+								<!-- <li class="active"><a href="<php echo base_url() ?>index.php/kategori"><i class="fa fa-circle-o"></i>KATEGORI PEMESANAN</a></li> -->
 								<li><a href="<?php echo base_url() ?>index.php/barang"><i class="fa fa-circle-o"></i>PEMESANAN</a></li>
 							</ul>
 						</li>
-						<li>
-							<a href="<?php echo base_url() ?>index.php/stok">
+						<!-- <li>
+							<a href="<php echo base_url() ?>index.php/stok">
 								<i class="fa fa-cubes"></i> <span>STOK</span>
 								<span class="pull-right-container">
 								</span>
 							</a>
-						</li>
-						<li>
-							<a href="<?php echo base_url() ?>index.php/penjualan">
+						</li> -->
+						<!-- <li>
+							<a href="<php echo base_url() ?>index.php/penjualan">
 								<i class="fa fa-shopping-cart"></i> <span>PENJUALAN</span>
 								<span class="pull-right-container">
 								</span>
 							</a>
-						</li>
+						</li> -->
 						<li>
 							<a href="<?php echo base_url() ?>index.php/operator">
 								<i class="fa fa-user-circle"></i> <span>User</span>

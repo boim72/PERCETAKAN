@@ -22,10 +22,11 @@
 					<div class="form-group" style="width:600px;padding-left:50px">
 						<label for="stok" class="control-label">Nama Barang</label>
 						<div class="input-group">
-							<select class="form-control select22" name="barang">
+							<select class="form-control select22" name="barang" id="barang" onchange="updateStok()">
+								<option value="" data-jumlah="0">Pilih Ukuran</option>
 								<?php
 								foreach ($barang as $b) {
-									echo "<option value=' $b->id_barang'>$b->nama_barang</option>";
+									echo "<option value='$b->id_barang' data-jumlah='$b->jumlah_barang'>$b->nama_barang </option>";
 								}
 								?>
 							</select>
@@ -35,8 +36,9 @@
 						</div>
 						<div class="help-block with-errors"></div>
 					</div>
+
 					<div class="form-group" style="width:600px;padding-left:50px">
-						<label for="" class="control-label">Jumlah Stok Barang</label>
+						<label for="stok" class="control-label">Jumlah Stok Barang</label>
 						<div class="input-group">
 							<input type="text" class="form-control" name="stok" id="stok" data-error="Total stok harus diisi" placeholder="Total Stok" value="" required />
 							<span class="input-group-addon">
@@ -53,3 +55,15 @@
 		</div>
 </div>
 </section>
+<script>
+    function updateStok() {
+        // Mendapatkan elemen select
+        var select = document.getElementById("barang");
+        
+        // Mendapatkan jumlah stok dari data atribut data-jumlah
+        var stok = select.options[select.selectedIndex].getAttribute("data-jumlah");
+        
+        // Memperbarui nilai input stok
+        document.getElementById("stok").value = stok;
+    }
+</script>

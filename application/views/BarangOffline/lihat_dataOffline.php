@@ -30,7 +30,7 @@
 <?php } ?>
 <section class="content">
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-12">	
 			<div class="box box-info">
 				<div class='box-header with-border'>
 					<h3 class='box-title'>Data Pemesanan</h3>
@@ -98,6 +98,8 @@
 								<?php } ?>
 							</tbody>
 						</table>
+												
+											
 					</div>
 					<?php foreach ($user as $u) : ?>
 						<!-- <div class="modal fade" id="modal-default" hidden> -->
@@ -160,13 +162,63 @@
 								</div>
 							</form>
 						</div>
-					<?php endforeach; ?>
+					<?php endforeach; ?>	
+					
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="content">
+				<div class="row">
+					<div class="col-md-3 col-sm-6 col-xs-12">
+					<div class="info-box">
+						<span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+	
+						<div class="info-box-content">
+						<span class="info-box-text">CPU Traffic</span>
+						<span class="info-box-number">90<small>%</small></span>
+						</div>
+						<!-- /.info-box-content -->
+					</div>
+					<!-- /.info-box -->
+					</div>
+					<!-- <div class="col-md-12">
+						<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+							<div class="col p-4 d-flex flex-column position-static">
+								<!-- Kategori atau jenis produk -->
+								<strong class="d-inline-block mb-2 text-primary-emphasis">Kategori Produk</strong>
+								
+								<!-- Nama Produk -->
+								<h3 class="mb-0">Nama Produk</h3>
+								
+								<!-- Tanggal atau informasi tambahan -->
+								<div class="mb-1 text-body-secondary">Tanggal</div>
+								
+								<!-- Deskripsi Produk -->
+								<p class="card-text mb-auto">Ini adalah deskripsi singkat dari produk yang ditampilkan di sini. Deskripsi ini dapat berisi detail produk atau fitur utamanya.</p>
+								
+								<!-- Tombol Aksi -->
+								<a href="URL_AKSI" class="icon-link gap-1 icon-link-hover stretched-link">
+									Lihat Produk
+									<svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+								</a>
+								<a href="URL_AKSI_LAIN" class="icon-link gap-1 icon-link-hover stretched-link">
+									Beli Sekarang
+									<svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+								</a>
+							</div>
+							
+							<!-- Foto Produk -->
+							<div class="col-auto d-none d-lg-block">
+								<img src="URL_FOTO_PRODUK" alt="Foto Produk" class="bd-placeholder-img" width="200" height="250">
+							</div>
+						</div>
+					</div> -->
 
-				
-			</div>
-		</div>
-	</div>
-</section>
+
+				</div>
+			</section>
+
 <script src="<?php echo base_url() ?>assets/app/js/alert.js"></script>
 <!-- <script>
 	$(document).ready(function() {

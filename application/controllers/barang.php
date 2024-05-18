@@ -164,6 +164,7 @@ class Barang extends CI_Controller
                 $foto = $this->upload->data('file_name');
                 $catatan = $this->input->post('catatan');
                 $progres = $this->input->post('progres');
+                $tanggal_barang = date('Y-m-d');
                 $data = array(
                     'nama_barang' => $nama,
                     'id_kategori' => $kategori,
@@ -174,6 +175,7 @@ class Barang extends CI_Controller
                     'foto' => $foto,
                     'catatan' => $catatan,
                     'progres' => $progres,
+                    'tanggal_barang' => $tanggal_barang
                 );
                 $this->Model_barang->post($data, $id);
                 $this->session->set_flashdata('message', 'Data Barang berhasil ditambahkan!');
@@ -264,6 +266,7 @@ function edit()
         $ukuran = $this->input->post('ukuran');
         $progres = $this->input->post('progres');
         $catatan = $this->input->post('catatan');
+        $tanggal_barang = date('Y-m-d');
 
         if (!$this->upload->do_upload('foto')) {
             // Jika tidak ada foto yang diupload, gunakan foto lama
@@ -292,6 +295,7 @@ function edit()
             'foto' => $foto,
             'progres' => $progres,
             'catatan' => $catatan,
+            'tanggal_barang' => $tanggal_barang,
         );
         $this->Model_barang->edit($data, $id);
         $this->session->set_flashdata('message', 'Data Barang berhasil dirubah!');

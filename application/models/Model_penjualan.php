@@ -32,6 +32,7 @@ class Model_penjualan extends Ci_Model
 	{
 		return $this->db->join('barang', 'barang.id_barang = stok.id_barang', 'left')
 			->join('ukuran', 'ukuran.id_ukuran = barang.ukuran', 'left')
+			->where('stok.stok_barang !=', 0)
 			->get('stok', $number, $offset)->result();
 	}
 

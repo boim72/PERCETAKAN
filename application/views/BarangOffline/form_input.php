@@ -16,7 +16,7 @@
 					<h3 class='box-title'>Tambah Data Pemesanan</h3>
 				</div>
 				<div class="box-body">
-					<?php echo form_open_multipart('Barang/post', array('role' => "form", 'id' => "myForm", 'data-toggle' => "validator")); ?>
+					<?php echo form_open_multipart('barangOffline/post', array('role' => "form", 'id' => "myForm", 'data-toggle' => "validator")); ?>
 					<div class="form-group">
 						<input type="hidden" name="id_operator" id="" value="<?= $this->session->userdata('id'); ?>" readonly> 
 						<input type="hidden" name="progres" id="" value="verivikasi" readonly> 
@@ -71,7 +71,6 @@
 						</div>
 						<div class="help-block with-errors"></div>
 					</div>
-					<?php if ($this->session->userdata['akses'] == 2 ) { ?>
 						<div class="form-group">
 							<label for="jumlah_barang" class="control-label">Jumlah</label>
 							<div class="input-group">
@@ -83,7 +82,6 @@
 							</div>
 							<div class="help-block with-errors"></div>
 						</div>
-					<?php } ?>
 			
 					<div class="form-group">
 						<label for="foto" class="control-label">Foto</label>

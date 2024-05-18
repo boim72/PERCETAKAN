@@ -8,11 +8,13 @@ class BarangOffline extends CI_Controller
         chek_role();
         $this->load->model('Model_barang');
         $this->load->model('Model_kategori');
+        $this->load->model('Model_stok');
     }
     function index()
     {
         $id_user = $this->session->userdata('id');
         $data['record'] = $this->Model_barang->tampil_data_offline()->result();
+        $data['stok'] = $this->Model_stok->tampil_data();
         $data['user'] = $this->Model_barang->get_oneuser($id_user)->result();
         $id = $this->session->userdata['akses'];
         $data['nota'] = $this->Model_barang->get_last_id();
@@ -21,18 +23,18 @@ class BarangOffline extends CI_Controller
         $this->load->view('template/datatables');
 
     }
-    // function index_offline()
-    // {
-    //     $id_user = $this->session->userdata('id');
-    //     $data['record'] = $this->Model_barang->tampil_data()->result();
-    //     $data['user'] = $this->Model_barang->get_oneuser($id_user)->result();
-    //     $id = $this->session->userdata['akses'];
-    //     $data['nota'] = $this->Model_barang->get_last_id();
-    //     // var_dump($id_nota);
-    //     $this->template->load('template/template', 'barang/lihat_data_offline', $data);
-    //     $this->load->view('template/datatables');
+    function index_card()
+    {
+        $id_user = $this->session->userdata('id');
+        $data['record'] = $this->Model_barang->tampil_data_offline()->result();
+        $data['user'] = $this->Model_barang->get_oneuser($id_user)->result();
+        $id = $this->session->userdata['akses'];
+        $data['nota'] = $this->Model_barang->get_last_id();
+        // var_dump($id_nota);
+        $this->template->load('template/template', 'BarangOffline/lihat_dataOffline', $data);
+        $this->load->view('template/datatables');
 
-    // }
+    }
     function pembayaran() 
         {
           // Ambil data dari form
@@ -143,7 +145,9 @@ class BarangOffline extends CI_Controller
                 $foto = $this->upload->data('file_name');
                 $catatan = $this->input->post('catatan');
                 $progres = $this->input->post('progres');
+                $tanggal_barang = date('Y-m-d');
                 $data = array(
+                    'id_barang' => $id_barang,
                     'nama_barang' => $nama,
                     'id_kategori' => $kategori,
                     'id_operator' => $id_operator,
@@ -153,19 +157,22 @@ class BarangOffline extends CI_Controller
                     'foto' => $foto,
                     'catatan' => $catatan,
                     'progres' => $progres,
+                    'tanggal_barang' => $tanggal_barang,
                 );
+                // var_dump($data);
                 $this->Model_barang->post($data, $id);
                 $this->session->set_flashdata('message', 'Data Barang berhasil ditambahkan!');
-                redirect('barang');
+                redirect('barangOffline');
             }
         } else {
             $id = $this->uri->segment(3);
             $data['error'] = $this->upload->display_errors();
             $this->load->model("Model_kategori");
             $data['kategori'] =  $this->Model_kategori->tampilkan_data();
+            $data['id_barang'] = $this->Model_barang->get_last_idbarang();
             $data['record'] = $this->Model_barang->get_one($id)->row_array();
             $data['ukuran'] = $this->Model_barang->tampilkan_ukuran()->result();
-            $this->template->load("template/template", "barang/form_input", $data);
+            $this->template->load("template/template", "barangOffline/form_input", $data);
         }
     }
 
@@ -243,6 +250,7 @@ function edit()
         $ukuran = $this->input->post('ukuran');
         $progres = $this->input->post('progres');
         $catatan = $this->input->post('catatan');
+        $tanggal_barang = $this->input->post('tanggal_barang');
 
         if (!$this->upload->do_upload('foto')) {
             // Jika tidak ada foto yang diupload, gunakan foto lama
@@ -271,6 +279,7 @@ function edit()
             'foto' => $foto,
             'progres' => $progres,
             'catatan' => $catatan,
+            'tanggal_barang' => $tanggal_barang,
         );
         $this->Model_barang->edit($data, $id);
         $this->session->set_flashdata('message', 'Data Barang berhasil dirubah!');

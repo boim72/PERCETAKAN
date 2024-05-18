@@ -38,6 +38,7 @@
 						<label for="kategori" class="control-label">Kategori</label>
 						<div class="input-group">
 							<select class="form-control" name="kategori">
+								<option value="" data-harga="0">Pilih Kategori</option>
 								<?php
 								foreach ($kategori as $k) {
 									echo "<option value=' $k->id_kategori'>$k->nama_kategori</option>";
@@ -53,10 +54,11 @@
 					<div class="form-group">
 						<label for="ukuran" class="control-label">Ukuran</label>
 						<div class="input-group">
-							<select class="form-control" name="ukuran">
+							<select class="form-control" name="ukuran" id="ukuran" onchange="updateHarga()">
+								 <option value="" data-harga="0">Pilih Ukuran</option>
 								<?php
 								foreach ($ukuran as $u) {
-									echo "<option value=' $u->id_ukuran'>$u->nama_ukuran</option>";
+									echo "<option value='$u->id_ukuran' data-harga='$u->harga_ukuran'>$u->nama_ukuran</option>";
 								}
 								?>
 							</select>
@@ -70,8 +72,7 @@
 						<div class="input-group">
 							<input type="text" name="harga" id="harga" data-error="harga harus di isi" class="form-control" placeholder="Harga Barang" required>
 							<span class="input-group-addon">
-								<span class="fas fa-money">
-								</span>
+								<span class="fas fa-money"></span>
 							</span>
 						</div>
 						<div class="help-block with-errors"></div>
@@ -111,3 +112,12 @@
 		</div>
 	</div>
 </section>
+
+<script>
+function updateHarga() {
+    var select = document.getElementById('ukuran');
+    var selectedOption = select.options[select.selectedIndex];
+    var harga = selectedOption.getAttribute('data-harga');
+    document.getElementById('harga').value = harga;
+}
+</script>

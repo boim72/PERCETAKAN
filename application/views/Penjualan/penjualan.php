@@ -189,7 +189,7 @@
                                         <label for="ukuran" class="control-label">Ukuran</label>
                                         <div class="input-group">
                                             <select class="form-control" name="ukuran">
-                                                <option value=""">Pilih Semua</option>
+                                                <option value="">Pilih Semua</option>
                                                 <?php
                                                 foreach ($ukuran as $u) {
                                                     echo "<option value=' $u->id_ukuran'>$u->nama_ukuran</option>";
@@ -551,7 +551,7 @@
         let val = parseInt(_this.val()) || (min - 1); // if input char is not a number the value will be (min - 1) so first condition will be true
         if (val < min)
             _this.val(min);
-        if (val > max)
+        if (val >= max)
             _this.val(max);
     });
     $(document).on('keyup', 'input[name=diskon]', function() {

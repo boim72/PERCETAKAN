@@ -154,9 +154,13 @@
 									<td><?php echo $u->catatan; ?></td>
 									<td><span class="badge text-bg-primary"><?php echo $u->progres; ?></span></td>
 									<td>
-										<?php if ($u->progres == 'Pembayaran'): ?>
-											<?php if (!empty($u->foto_payment)) : ?>						
-												<?php echo anchor(site_url('barang/struck/' . $u->id_barang), '<i class="fa fa-pencil-square-o fa-lg"></i>&nbsp;&nbsp;Struk', array('title' => 'Struk', 'class' => 'btn btn-sm btn-primary')); ?>								
+										<?php if ($u->progres == 'Berhasil') { ?>
+											<?php if (!empty($u->foto_payment)) : ?>
+												<div class="box-body">
+													<button type="button" class="btn btn-success" data-toggle="modal" id="" data-target="">
+														<i class="fa fa-fw fa-credit-card"></i>Verivikasi Pembayaran
+													</button>
+												</div>						
 											<?php	else : ?>
 												<div class="box-body">
 													<button type="button" class="btn btn-success" data-toggle="modal" id="" data-target="#modal-<?= $u->id_barang; ?>">
@@ -164,11 +168,16 @@
 													</button>
 												</div>
 											<?php endif; ?>
-										<?php else: ?>
+										<?php } elseif ($u->progres == 'Produksi' && !empty($u->foto_payment)) { ?>
+												<div class="box-body" >
+													<!-- Konten menu struk -->
+													<?php echo anchor(site_url('barang/struck/' . $u->id_barang), '<i class="fa fa-pencil-square-o fa-lg"></i>&nbsp;&nbsp;Struk', array('title' => 'Struk', 'class' => 'btn btn-sm btn-primary')); ?>								
+												</div>	
+										<?php } else { ?>
 											<?php echo anchor(site_url('barang/edit/' . $u->id_barang), '<i class="fa fa-pencil-square-o fa-lg"></i>&nbsp;&nbsp;Edit', array('title' => 'Edit', 'class' => 'btn btn-sm btn-warning')); ?>
 											&nbsp;
 											<?php echo anchor(site_url('barang/hapus/' . $u->id_barang), '<i class="fa fa-trash fa-lg"></i>&nbsp;&nbsp;Hapus', 'title="Delete" class="btn btn-sm btn-danger"'); ?>
-										<?php endif; ?>
+										<?php } ?>
 									</td>
 								</tr>
 								<?php } ?>
@@ -245,6 +254,18 @@
 	</div>
 </section>
 <script src="<?php echo base_url() ?>assets/app/js/alert.js"></script>
+   <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var toggleButton = document.getElementById('toggle-struk-user');
+        var strukMenus = document.querySelectorAll('.menu-struk-user');
+
+        toggleButton.addEventListener('click', function() {
+            strukMenus.forEach(function(menu) {
+                menu.classList.toggle('hidden');
+            });
+        });
+    });
+</script>
 <!-- <script>
 	$(document).ready(function() {
 		$('#myTable').DataTable({
