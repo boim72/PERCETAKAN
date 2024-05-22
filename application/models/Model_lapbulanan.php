@@ -2,15 +2,74 @@
 
 class Model_lapbulanan extends Ci_Model
 {
+    function lihat_data () {
+        return $this->db->select('barang.nama_barang, barang.harga, barang.jumlah_barang, 
+        pembayaran.id_byr, pembayaran.metode,
+        barang_rusak.jumlah_rusak,
+        detail_penjualan.grand_total', 'detail_penjualan.tgl_trf', 'detail_penjualan.nama_pelanggan')
+        ->from('detail_penjualan')
+        ->join('barang', 'barang.id_barang = detail_penjualan.id_barang', 'left')
+        ->join('barang_rusak', 'barang_rusak.id_barang = detail_penjualan.id_barang', 'left')
+        ->join('pembayaran', 'pembayaran.id_byr = detail_penjualan.id_pembayaran', 'left')
+        ->order_by('detail_penjualan.id', 'ASC')
+        ->get();
+    }
+    public function get_filtered_data($start, $end, $metode) {
+        $this->db->select('barang.nama_barang, barang.harga, barang.jumlah_barang, pembayaran.id_byr, pembayaran.metode, barang_rusak.jumlah_rusak, detail_penjualan.grand_total, detail_penjualan.tgl_trf, detail_penjualan.nama_pelanggan');
+        $this->db->from('detail_penjualan');
+        $this->db->join('barang', 'barang.id_barang = detail_penjualan.id_barang', 'left');
+        $this->db->join('barang_rusak', 'barang_rusak.id_barang = detail_penjualan.id_barang', 'left');
+        $this->db->join('pembayaran', 'pembayaran.id_byr = detail_penjualan.id_pembayaran', 'left');
+        // $this->db->join('penjualan', 'penjualan.id_barang = barang.id_barang', 'left');
+        $this->db->where('detail_penjualan.tgl_trf >=', $start);
+        $this->db->where('detail_penjualan.tgl_trf <=', $end);
 
-    public function bulanan($thn)
+        if (!empty($metode)) {
+            $this->db->where('detail_penjualan.id_pembayaran', $metode);
+        }
+
+        $this->db->order_by('detail_penjualan.id', 'ASC');
+        return $this->db->get()->result();
+    }
+    // function get_range($start, $end, $metode)
+    // {
+    //     if ($metode != '') {
+    //         return $this->db->join('penjualan', 'penjualan.id_dtlpen = detail_penjualan.id', 'left')
+    //             ->join('barang', 'barang.id_barang = penjualan.id_barang', 'left')
+    //             ->join('pembayaran', ' detail_penjualan.id_pembayaran = pembayaran.id_byr ', 'inner')
+    //             ->where("tgl_trf >=", $start)
+    //             ->where("tgl_trf <=", $end)
+    //             ->where('id_pembayaran', $metode)
+    //             ->group_by('detail_penjualan.no_trf')
+    //             ->distinct()
+    //             ->order_by('detail_penjualan.id', 'ASC')
+    //             ->get('detail_penjualan')->result();
+    //     } else {
+    //         return $this->db->join('penjualan', 'penjualan.id_dtlpen = detail_penjualan.id', 'left')
+    //             ->join('barang', 'barang.id_barang = penjualan.id_barang', 'left')
+    //             ->join('pembayaran', ' detail_penjualan.id_pembayaran = pembayaran.id_byr ', 'inner')
+    //             ->where("tgl_trf >=", $start)
+    //             ->where("tgl_trf <=", $end)
+    //             ->group_by('detail_penjualan.no_trf')
+    //             ->distinct()
+    //             ->order_by('detail_penjualan.id', 'ASC')
+    //             ->get('detail_penjualan')->result();
+    //     }
+    // }
+
+   public function bulanan($thn)
     {
-        return $this->db->select('tgl_trf,sum(grand_total) as gtotal')
+        $result = $this->db->select('detail_penjualan.tgl_trf,detail_penjualan.sum(grand_total) as gtotal')
             ->from('detail_penjualan')
             ->where('YEAR(tgl_trf)', $thn)
             ->group_by('MONTH(tgl_trf)')
-            ->get()
-            ->result();
+            ->get();
+
+        if ($result) {
+            return $result->result_array();
+        } else {
+            return array(); // Atau sesuaikan dengan tindakan yang sesuai jika query tidak berhasil
+        }
     }
 
     public function income()
@@ -53,10 +112,10 @@ class Model_lapbulanan extends Ci_Model
             ->where(    'month(detail_penjualan.tgl_trf) = month(CURRENT_date())')
             ->limit('1')
             ->get();
-        if ($query->num_rows() > 0) {
-            return $query->row();
-        } else {
-            return FALSE;
-        }
+        // if ($query->num_rows() > 0) {
+        //     return $query->row();
+        // } else {
+        //     return FALSE;
+        // }
     }
 }

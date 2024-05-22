@@ -23,7 +23,7 @@ https://templatemo.com/tm-540-lava-landing-page
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/landingpage/assets') ?>/css/font-awesome.css">
 
-    <link rel="stylesheet" href="<?php echo base_url('assets/landingpage/assets') ?>/css/templatemo-lava.css">
+    <link rel="stylesheet" href="<?php echo base_url('assets/landingpage/assets') ?>/css/templatemo-lava3.css">
 
     <link rel="stylesheet" href="<?php echo base_url('assets/landingpage/assets') ?>/css/owl-carousel.css">
 

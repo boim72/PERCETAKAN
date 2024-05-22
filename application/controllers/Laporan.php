@@ -24,7 +24,7 @@ class Laporan extends CI_Controller
             $this->template->load('template/template', 'laporan/lihat_data', $data);
             $this->load->view('template/datatables');
         } else {
-            $data['laporan'] = $this->Model_laporan->get_data();
+            // $data['laporan'] = $this->Model_laporan->lihat_data();
             $data['metode'] = $this->Model_laporan->get_metode();
             $this->template->load('template/template', 'laporan/lihat_data', $data);
             $this->load->view('template/datatables');

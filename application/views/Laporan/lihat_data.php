@@ -34,7 +34,7 @@
                                 <div class="form-group">
                                     <label for="start_date" class="control-label">Tanggal Awal</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="start_date" id="start_date" data-error="Tanggal Awal harus diisi" required />
+                                        <input type="date" class="form-control" name="start_date" id="start_date" data-error="Tanggal Awal harus diisi" required />
                                         <span class="input-group-addon">
                                             <span class="fa fa-calendar"></span>
                                         </span>
@@ -48,7 +48,7 @@
                                 <div class="form-group">
                                     <label for="end_date" class="control-label">Tanggal Akhir</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="end_date" id="end_date" data-error="Tanggal Akhir harus diisi" required />
+                                        <input type="date" class="form-control" name="end_date" id="end_date" data-error="Tanggal Akhir harus diisi" required />
                                         <span class="input-group-addon">
                                             <span class="fa fa-calendar"></span>
                                         </span>
@@ -95,6 +95,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php if(!empty($laporan)): ?>
                         <?php $no = 0;
                         foreach ($laporan as $row) { ?>
                         <tr>
@@ -112,6 +113,7 @@
                             </td>
                         </tr>
                         <?php } ?>
+                    <?php endif; ?>
                     </tbody>
                 </table>
             </div>
@@ -120,7 +122,7 @@
     </div>
 </section>
 <script src="<?php echo base_url() ?>assets/app/js/alert.js"></script>
-<script>
+<!-- <script>
     $(document).ready(function() {
         $('.input-daterange').datepicker({
             todayBtn: 'linked',
@@ -176,4 +178,4 @@
             ],
         });
     });
-</script>
+</script> -->

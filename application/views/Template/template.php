@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Simple Point of Sale</title>
+	<title>Percetakan Omahan</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<!-- Bootstrap 3.3.7 -->
@@ -47,9 +47,9 @@
 			<!-- Logo -->
 			<a href="index2.html" class="logo">
 				<!-- mini logo for sidebar mini 50x50 pixels -->
-				<span class="logo-mini"><b>C</b>P</span>
+				<span class="logo-mini"><b>P</b>O</span>
 				<!-- logo for regular state and mobile devices -->
-				<span class="logo-lg"><b>Printing</b>POS</span>
+				<span class="logo-lg"><b>Percetakan</b>POS</span>
 			</a>
 			<!-- Header Navbar: style can be found in header.less -->
 			<nav class="navbar navbar-static-top">
@@ -123,6 +123,7 @@
 							</a>
 							<ul class="treeview-menu">
 								<li class="active"><a href="<?php echo base_url() ?>index.php/kategori"><i class="fa fa-circle-o"></i>KATEGORI PEMESANAN</a></li>
+								<li class="active"><a href="<?php echo base_url() ?>index.php/Ukuran"><i class="fa fa-circle-o"></i>KATEGORI UKURAN</a></li>
 								<li><a href="<?php echo base_url() ?>barang/index"><i class="fa fa-circle-o"></i>PEMESANAN ONLINE</a></li>
 							     <li><a href="<?php echo base_url() ?>index.php/BarangOffline"><i class="fa fa-circle-o"></i>PEMESANAN OFFLINE</a></li>
 							</ul>
@@ -148,13 +149,13 @@
 						</li>
 						<li class="active treeview">
 							<a href="#">
-								<i class="fa fa-cubes"></i> <span>STOK Barang</span>
+								<i class="fa fa-cubes"></i> <span> Broken </span>
 								<span class="pull-right-container">
 									<i class="fa fa-angle-left pull-right-container"></i>
 								</span>
 							</a>
 							<ul class="treeview-menu">
-								<li><a href="<?php echo base_url() ?>index.php/stok"><i class="fa fa-circle-o"></i>Stok Barang Jadi</a></li>
+								<li><a href="<?php echo base_url() ?>index.php/BarangRusak"><i class="fa fa-circle-o"></i> Barang Rusak</a></li>
 							</ul>
 						</li>
 						<li class="active treeview">
@@ -166,7 +167,7 @@
 							</a>
 							<ul class="treeview-menu">
 								<li class="active"><a href="<?= base_url(); ?>index.php/bahan"><i class="fa fa-circle-o"></i>Stok Bahan</a></li>
-								<!-- <li><a href="<php echo base_url() ?>index.php/stok"><i class="fa fa-circle-o"></i>Stok Barang</a></li> -->
+								<li><a href="<?php echo base_url() ?>index.php/stok"><i class="fa fa-circle-o"></i>Stok Barang Jadi</a></li>
 							</ul>
 						</li>
 						<li>
@@ -268,8 +269,8 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					BilBilWest
-					<small>Control panel</small>
+					Percetakan Omahan
+					<!-- <small>Control panel</small> -->
 				</h1>
 			</section>
 			<!-- Main content -->

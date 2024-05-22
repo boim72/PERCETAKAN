@@ -102,11 +102,11 @@ class Model_lapharian extends Ci_Model
             ->where('day(detail_penjualan.tgl_trf) = day(CURRENT_date())')
             ->limit('1')
             ->get();
-        if ($query->num_rows() > 0) {
-            return $query->row();
-        } else {
-            return 0;
-        }
+        // if ($query->num_rows() > 0) {
+        //     return $query->row();
+        // } else {
+        //     return 0;
+        // }
     }
 
     public function getcalender($year, $month)

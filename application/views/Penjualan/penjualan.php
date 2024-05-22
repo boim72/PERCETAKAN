@@ -381,6 +381,7 @@
                                                         if (!empty($this->cart->contents())) {
                                                             foreach ($this->cart->contents() as $items) { ?>
                                     <input type="hidden" name="idbrg" value="<?= $items['id_barang']; ?>">
+                                    <input type="hidden" name="id_barang" value="<?= $items['id_barang']; ?>">
                                     <input type="hidden" name="rowid" value="<?= $items['rowid']; ?>">
                                     <input type="hidden" value="<?= $items['qty']; ?>" name="qty" size="5">
                                                             <?php } }else{ }?>

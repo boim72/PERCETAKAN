@@ -7,15 +7,31 @@ class Lapbulanan extends CI_Controller
         parent::__construct();
         chek_session();
         $this->load->model('Model_lapbulanan');
+        $this->load->model('Model_laporan');
+        $this->load->model('Model_barangrusak');
     }
 
     function index()
     {
-        $data['tahun'] = $this->uri->segment(3);
-        $thn = $this->uri->segment(3);
-        $data['bulanan'] = $this->Model_lapbulanan->bulanan($thn);
-        $data['cards'] = $this->cards();
-        $this->template->load('template/template', 'laporan/lap_bulanan', $data);
+         if (isset($_POST['search'])) {
+            $start = $this->input->post('start_date');
+            $end = $this->input->post('end_date');
+            $metode = $this->input->post('metode');
+            $data['laporan'] = $this->Model_lapbulanan->get_filtered_data($start,$end,$metode);
+            $data['metode'] = $this->Model_laporan->get_metode();
+            $data['rusak'] = $this->Model_barangrusak->tampil_datarusak();
+            $data['cards'] = $this->cards();
+            $this->template->load('template/template', 'laporan/lap_bulanan', $data);
+            $this->load->view('template/datatables');
+        } else {
+            $data['tahun'] = $this->uri->segment(3);
+            $thn = $this->uri->segment(3);
+            $data['bulanan'] = $this->Model_lapbulanan->bulanan($thn);
+            $data['metode'] = $this->Model_laporan->get_metode();
+            // $data['rusak'] = $this->model_barangrusak->tampil_datarusak();
+            $data['cards'] = $this->cards();
+            $this->template->load('template/template', 'laporan/lap_bulanan', $data);
+        }
     }
 
     public function cards()
@@ -47,13 +63,6 @@ class Lapbulanan extends CI_Controller
                 'title'        => 'Total Penjualan',
                 'description'    => 'Total Penjualan',
                 'icon'        => 'shopping-basket'
-            ],
-            [
-                'box'         => 'red',
-                'total'     => $laris,
-                'title'        => 'Barang Terlaris',
-                'description'    => 'Barang Terlaris',
-                'icon'        => 'cube'
             ],
 
         ];

@@ -32,7 +32,8 @@ class Kategori extends CI_Controller
 	{
 		if (isset($_POST['submit'])) {
 			//proses kategori
-			$this->Model_kategori->edit();
+			$id = $this->input->post('id_kategori');
+			$this->Model_kategori->edit($id);
 			redirect('kategori');
 		} else {
 			$id = $this->uri->segment(3);

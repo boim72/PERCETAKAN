@@ -65,7 +65,9 @@
 					<h3 class='box-title'>Data Pemesanan</h3>
 					<div class="pull-right">
 						<?php
-						echo anchor('barang/post', 'Tambah data', array('class' => 'btn btn-success'))
+						if ($akses_user == 2) :
+							echo anchor('barang/post', 'Tambah data', array('class' => 'btn btn-success'));
+						endif ;
 						?>
 					</div>
 				</div>
@@ -154,20 +156,25 @@
 									<td><?php echo $u->catatan; ?></td>
 									<td><span class="badge text-bg-primary"><?php echo $u->progres; ?></span></td>
 									<td>
-										<?php if ($u->progres == 'Berhasil') { ?>
+										<?php if ($u->progres == 'Pembayaran') { ?>
 											<?php if (!empty($u->foto_payment)) : ?>
 												<div class="box-body">
 													<button type="button" class="btn btn-success" data-toggle="modal" id="" data-target="">
 														<i class="fa fa-fw fa-credit-card"></i>Verivikasi Pembayaran
 													</button>
 												</div>						
-											<?php	else : ?>
+											<?php else: ?>
 												<div class="box-body">
 													<button type="button" class="btn btn-success" data-toggle="modal" id="" data-target="#modal-<?= $u->id_barang; ?>">
 														<i class="fa fa-fw fa-credit-card"></i>Pembayaran
 													</button>
 												</div>
 											<?php endif; ?>
+										<?php } elseif ($u->progres == 'Berhasil' || $u->progres == 'Pembayaran') { ?>
+											<div class="box-body" >
+													<!-- Konten menu struk -->
+													<?php echo anchor(site_url('barang/struck/' . $u->id_barang), '<i class="fa fa-pencil-square-o fa-lg"></i>&nbsp;&nbsp;Struk', array('title' => 'Struk', 'class' => 'btn btn-sm btn-primary')); ?>								
+												</div>	
 										<?php } elseif ($u->progres == 'Produksi' && !empty($u->foto_payment)) { ?>
 												<div class="box-body" >
 													<!-- Konten menu struk -->

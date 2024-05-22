@@ -16,12 +16,13 @@
 				</div>
 				<div class="box-body">
 					<?php
-					echo form_open('kategori/post', array('role' => "form", 'id' => "myForm", 'data-toggle' => "validator"));
+					echo form_open('kategori/edit', array('role' => "form", 'id' => "myForm", 'data-toggle' => "validator"));
 					?>
+					<input type="hidden" name="id_kategori" value="<?php echo $record['id_kategori']; ?>">
 					<div class="form-group">
-						<label for="kategori" class="control-label">Nama Kategori</label>
+						<label for="nama_kategori" class="control-label">Nama Kategori</label>
 						<div class="input-group">
-							<input type="text" class="form-control" name="kategori" id="kategori" data-error="Nama Kategori harus diisi" placeholder="Nama Kategori" value="<?php echo $record['nama_kategori']; ?>" required />
+							<input type="text" class="form-control" name="nama_kategori" id="nama_kategori" data-error="Nama Kategori harus diisi" placeholder="Nama Kategori" value="<?php echo $record['nama_kategori']; ?>" required />
 							<span class="input-group-addon">
 								<span class="fa fa-cube"></span>
 							</span>

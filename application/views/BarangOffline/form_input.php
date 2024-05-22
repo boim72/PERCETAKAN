@@ -48,10 +48,10 @@
 					<div class="form-group">
 						<label for="ukuran" class="control-label">Ukuran</label>
 						<div class="input-group">
-							<select class="form-control" name="ukuran">
+							<select class="form-control" name="ukuran" id="ukuran" onchange="updateHarga()">
 								<?php
 								foreach ($ukuran as $u) {
-									echo "<option value=' $u->id_ukuran'>$u->nama_ukuran</option>";
+									echo "<option value='$u->id_ukuran' data-harga='$u->harga_ukuran'>$u->nama_ukuran</option>";
 								}
 								?>
 							</select>
@@ -104,3 +104,11 @@
 		</div>
 	</div>
 </section>
+<script>
+function updateHarga() {
+    var select = document.getElementById('ukuran');
+    var selectedOption = select.options[select.selectedIndex];
+    var harga = selectedOption.getAttribute('data-harga');
+    document.getElementById('harga').value = harga;
+}
+</script>

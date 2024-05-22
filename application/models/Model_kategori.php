@@ -15,11 +15,13 @@ class Model_kategori extends CI_Model {
 			$this->db->insert('kategori', $data);
 		}
 
-		function edit()
+		function edit($id)
 		{
-			$data=array('nama_kategori'=> $this->input->post('kategori'));
-			$this->db->where('id_kategori', $this->input->post('id'));
-			$this->db->update('kategori',$data);
+			$data = array(
+				'nama_kategori'=> $this->input->post('nama_kategori')
+			);
+			$this->db->where('id_kategori', $id);
+			$this->db->update('kategori', $data);
 		}
 
 		function get_one($id)

@@ -56,7 +56,8 @@
               </div>
               <button type="submit" name="submit"  class="btn text-white btn-block btn-primary">Login</button>
               <span class="d-block text-center my-4 text-muted"> Belum Punya akun ? <a href="<?= base_url(); ?>Auth/Register">Register</a></span>
-              
+               <span class="d-block text-center my-4 text-muted"><a href="<?= base_url(); ?>landingpage">Kembali</a></span>
+
              
             </form>
             </div>
